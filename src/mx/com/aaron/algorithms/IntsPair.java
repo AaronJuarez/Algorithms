@@ -1,56 +1,69 @@
 package mx.com.aaron.algorithms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-import mx.com.aaron.algorithms.util.InputData;
+import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class IntsPair {
 	
 	private int target;
-	private int[] elements;
+	private int[] elems;
 	private List<int[]> numbers = new ArrayList<int[]>();
-	private InputData inputData = new InputData();
+	private HashMap<IntsPair.IntsPairKey, Integer> elements = new HashMap<IntsPair.IntsPairKey,Integer>();
 	
 	
-	public IntsPair(){
-		
-		try{
-			System.out.println("Type target: ");
-			target = inputData.readInt();
-			System.out.println("Type length of array");
-			int arrayLength = inputData.readInt();
-			elements = new int[arrayLength];
-			populateArray();
-		}catch(NegativeArraySizeException e){
-			System.out.println("Negative array size");
-			System.exit(0);
+	public IntsPair(int target, int[] elems) {
+		this.elems = elems;
+		this.target = target;
+		storeValues();
+	}
+	
+	public void storeValues() {
+		for(int e : elems) {
+			IntsPairKey key = new IntsPairKey(e);
+			elements.put(key, e);
 		}
 	}
 	
-	public void populateArray(){
-		for(int i=1; i<=elements.length; i++){
-			elements[i-1] = i;
-		}
-	}
 	
 	public void findNumbers(){
-		for(int i=0; i < elements.length; i++){
-			for(int j=i+1; j<elements.length; j++){
-				int res = elements[i]+elements[j];
-				if(res==target){
-					int[] nums = {elements[i],elements[j]};
-					numbers.add(nums);
-				}
+		
+		Iterator<Entry<IntsPairKey, Integer>> iter = elements.entrySet().iterator();
+		
+		while(iter.hasNext()) {
+			Map.Entry<IntsPair.IntsPairKey, Integer> currentElement = iter.next();
+			Integer keyNum = currentElement.getKey().key;
+			
+			if(elements.containsValue(keyNum)) {
+				int[] nums = {keyNum, currentElement.getValue()};
+				numbers.add(nums);
 			}
+			
+		}
+		
+	}
+	
+	public class IntsPairKey {
+		int key;
+		int value;
+		
+		public IntsPairKey(int value){
+			this.value = value;
+		}
+		
+		@Override
+		public int hashCode(){
+			key = target-value;
+			return key;
 		}
 	}
 	
-	public void displayElements(){
-		for(int[] elem : numbers){
-			System.out.println(elem[0] + " + " + elem[1]);
-		}
+	public List<int[]> getNumbers() {
+		return numbers;
 	}
 
 }

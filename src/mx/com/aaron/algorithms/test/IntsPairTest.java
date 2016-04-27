@@ -8,12 +8,20 @@ import mx.com.aaron.algorithms.IntsPair;
 
 public class IntsPairTest {
 	IntsPair intsPair;
+	int[] elements;
 
 	@Test
 	public void test() {
-		intsPair = new IntsPair();
+		elements = new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+		intsPair = new IntsPair(10, elements);
 		intsPair.findNumbers();
-		intsPair.displayElements();
+		displayElements();
+	}
+	
+	public void displayElements() {
+		for(int[] num : intsPair.getNumbers()){
+			System.out.println(num[0] + " + " + num[1]);
+		}
 	}
 
 }
