@@ -65,5 +65,25 @@ public class IntsPair {
 	public List<int[]> getNumbers() {
 		return numbers;
 	}
+	
+	public class PairOfNum {
+
+	    public ArrayList<Integer> pairNum(ArrayList<Integer> elements, int target) {  
+
+	        ArrayList<Integer> pairSum = new ArrayList<>();
+	        HashMap<Integer, Integer> checkSum = new HashMap<>();
+	        
+	        elements.forEach((num) -> {
+	            if(checkSum.containsKey(num)){
+	                pairSum.add(checkSum.get(num));
+	                pairSum.add(num);
+	                checkSum.remove(num);
+	            } else {
+	                checkSum.put(target-num, num);
+	            }            
+	        });
+	        return pairSum;
+	    }
+	}
 
 }
