@@ -13,13 +13,15 @@ public class GreaterSum {
 	}
 	
 	public int calculate() {
-		int temp = 0;
 		int greater = 0;
 		
 		for(int i=0; i<elems.length; i++) {
-			temp = temp + elems[i];
-			sumTotals.add(elems[i]);
-			sumTotals.add(temp);
+			int temp = 0;
+			
+			for(int j=i; j<elems.length; j++) {
+				temp = temp + elems[j];
+				sumTotals.add(temp);
+			}
 		}
 		
 		display();
