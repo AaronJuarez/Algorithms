@@ -21,7 +21,6 @@ public class GreaterSumTest {
 	@Test
 	public void test() {
 		System.out.println("Greater sum is: " + sum.calculate());
-		
 	}
 
 }
