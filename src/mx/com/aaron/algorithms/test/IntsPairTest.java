@@ -2,6 +2,9 @@ package mx.com.aaron.algorithms.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import mx.com.aaron.algorithms.IntsPair;
@@ -27,7 +30,7 @@ public class IntsPairTest {
 */
 	@Test
 	public void naiveTest() {
-		int[] elementsNaive = new int[]{0,3,2,1,14,7,6,4,12,9,10,5,8,13,11,15};
+		Integer[] elementsNaive = new Integer[]{0,3,2,1,14,7,7,6,4,12,9,10,5,8,13,11,15,1};
 		IntsPairNaive intsPairNaive = new IntsPairNaive(10, elementsNaive);
 		intsPairNaive.calculate();
 		intsPairNaive.display();

@@ -5,10 +5,10 @@ import java.util.List;
 
 public class IntsPairNaive {
 	private final int target;
-	private final int[] elements;
+	private Integer[] elements;
 	private List<int[]> results = new ArrayList<>();
 	
-	public IntsPairNaive(int target, int[] elements) {
+	public IntsPairNaive(int target, Integer[] elements) {
 		this.target = target;
 		this.elements = elements;
 	}
@@ -16,13 +16,25 @@ public class IntsPairNaive {
 	public void calculate() {
 		
 		for(int i=0; i<elements.length; i++) {
-			int elem = elements[i];
+			Integer elem = elements[i];
 			
 			for(int j=i; j<elements.length; j++) {
-				int elem2 = elements[j];
-				int res = elem + elem2;
+				Integer elem2 = elements[j];
+				
+				if(elem == null) {
+					break;
+				}
+				if(elem2 == null) {
+					continue;
+				}
+				
+				Integer res = elem + elem2;
 				if(res == target && elem != elem2) {
 					results.add(new int[]{elem, elem2});
+					elements[i] = null;
+					elements[j] = null;
+					elem = null;
+					elem2 = null;
 				}
 			}
 		}
