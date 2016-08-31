@@ -1,18 +1,16 @@
 package mx.com.aaron.algorithms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class IntsPairNaive {
-	private final int target;
+	private int target;
 	private Integer[] elements;
-	private List<int[]> results = new ArrayList<>();
+	private List<int[]> pairs = new ArrayList<>();
 	
-	public IntsPairNaive(int target, Integer[] elements) {
-		this.target = target;
-		this.elements = elements;
-	}
-	
+
+	/*
 	public void calculate() {
 		
 		for(int i=0; i<elements.length; i++) {
@@ -30,7 +28,7 @@ public class IntsPairNaive {
 				
 				Integer res = elem + elem2;
 				if(res == target && elem != elem2) {
-					results.add(new int[]{elem, elem2});
+					pairs.add(new int[]{elem, elem2});
 					elements[i] = null;
 					elements[j] = null;
 					elem = null;
@@ -39,9 +37,34 @@ public class IntsPairNaive {
 			}
 		}
 	}
+	*/
+	
+	public void calculate() {
+		HashMap<Integer, Integer> results = new HashMap<>();
+		
+		for(int i=0; i<elements.length; i++) {
+			int elem = elements[i];
+			
+			if(!results.containsKey(elem)) {
+				int res = target - elem;
+				results.put(res, elem);
+			}else {
+				int keyValue = results.get(elem);
+				pairs.add(new int[] {elem, keyValue});
+				results.remove(elem);
+			}
+			
+		}
+		
+	}
+	
+	public void setData(int target, Integer[] elements) {
+		this.target = target;
+		this.elements = elements;
+	}
 	
 	public void display() {
-		for(int[] e : results) {
+		for(int[] e : pairs) {
 			for(int k : e) {
 				System.out.print(k + " ");
 			}

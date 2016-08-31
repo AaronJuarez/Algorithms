@@ -30,8 +30,22 @@ public class IntsPairTest {
 */
 	@Test
 	public void naiveTest() {
-		Integer[] elementsNaive = new Integer[]{0,3,2,1,14,7,7,6,4,12,9,10,5,8,13,11,15,1};
-		IntsPairNaive intsPairNaive = new IntsPairNaive(10, elementsNaive);
+		System.out.println("naiveTest:");
+		IntsPairNaive intsPairNaive = new IntsPairNaive();
+		Integer[] elementsNaive = new Integer[]{0,3,2,1,14,7,6,4,12,9,10,5,8,13,11,15};
+		
+		intsPairNaive.setData(10, elementsNaive);
+		intsPairNaive.calculate();
+		intsPairNaive.display();
+	}
+	
+	@Test
+	public void extraNumbersTest() {
+		System.out.println("extraNumbersTest:");
+		IntsPairNaive intsPairNaive = new IntsPairNaive();
+		Integer[] elementsNaive = new Integer[]{0,3,2,1,14,7,7,6,4,12,9,10,5,8,13,11,15,1,9};
+		
+		intsPairNaive.setData(10, elementsNaive);
 		intsPairNaive.calculate();
 		intsPairNaive.display();
 	}
