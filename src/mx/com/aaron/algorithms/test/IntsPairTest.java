@@ -49,4 +49,15 @@ public class IntsPairTest {
 		intsPairNaive.calculate();
 		intsPairNaive.display();
 	}
+	
+	@Test
+	public void negativeNumbersTest() {
+		System.out.println("negativeNumbersTest:");
+		IntsPairNaive intsPairNaive = new IntsPairNaive();
+		Integer[] elementsNaive = new Integer[]{0,3,2,-1,14,7,7,6,-4,12,9,10,5,8,13,11,15};
+		
+		intsPairNaive.setData(10, elementsNaive);
+		intsPairNaive.calculate();
+		intsPairNaive.display();
+	}
 }
